@@ -1,0 +1,33 @@
+.InputWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.InputLabel {
+    font-weight: 500;
+    pointer-events: none;
+}
+
+.InputLabelFocused {
+    color: #1976d2;
+}
+
+.InputLabelDisabled {
+    color: currentcolor;
+}
+
+.Input {
+    padding: 8px;
+    outline: 0;
+    border: 2px solid #000;
+    border-radius: 5px;
+
+    &:focus {
+        border-color: #1976d2;
+    }
+
+    &:disabled {
+        background-color: #d5d5d5;
+        cursor: not-allowed;
+    }
+}

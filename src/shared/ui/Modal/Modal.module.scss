@@ -1,0 +1,21 @@
+$bg-color-modal: rgb(0 0 0 / 70%);
+$bg-color-modal-content: #fff;
+
+.Modal {
+    position: relative;
+    z-index: 50;
+}
+
+.ModalOverlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+    background-color: $bg-color-modal;
+}
+
+.ModalContent {
+    background: $bg-color-modal-content;
+}
