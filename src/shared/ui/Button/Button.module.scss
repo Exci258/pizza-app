@@ -1,5 +1,5 @@
 $primary-color: #1976d2;
-$secondary-color: #9c27b0;
+$secondary-color: #d15700;
 $success-color: #4caf50;
 $error-color: #f44336;
 
@@ -9,7 +9,7 @@ $error-color: #f44336;
     cursor: pointer;
     transition: background-color 0.3s ease;
     border: solid;
-    font-weight: 600;
+    font-weight: 500;
 
     &.outlined {
         border: 1px solid;

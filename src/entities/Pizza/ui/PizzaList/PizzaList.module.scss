@@ -1,0 +1,15 @@
+.PizzaList {
+    display: flex;
+    flex-direction: column;
+}
+
+.Title {
+    font-size: 36px;
+    margin: 32px 0;
+}
+
+.PizzaListItems {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 35px;
+}
