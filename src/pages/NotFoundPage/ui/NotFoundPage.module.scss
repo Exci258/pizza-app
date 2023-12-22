@@ -1,3 +1,18 @@
 .NotFoundPage {
+    display: flex;
 
+    img {
+        max-width: 700px;
+    }
+}
+
+.NotFound {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    justify-content: center;
+
+    a {
+        width: fit-content;
+    }
 }

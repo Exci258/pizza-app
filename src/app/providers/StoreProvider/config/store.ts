@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { mainPageReducer } from 'pages/MainPage/model/slice/mainPageSlice';
+import { cartReducer } from 'entities/Cart';
+import { pizzasReducer } from 'entities/Pizza';
 
 export function createReduxStore() {
     const rootReducers = {
-        mainPage: mainPageReducer,
+        pizzas: pizzasReducer,
+        cart: cartReducer,
     };
 
     return configureStore({

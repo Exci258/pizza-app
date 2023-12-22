@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchPizzasList } from '../services/fetchPizzasList/fetchPizzasList';
-import { MainPageSchema } from '../types/mainPageSchema';
+import { PizzasSchema } from '../types/pizzas';
 
-const initialState: MainPageSchema = {
-    pizzas: [],
+const initialState: PizzasSchema = {
+    data: [],
     isLoading: false,
 };
 
-const mainPageSlice = createSlice({
-    name: 'mainPageSlice',
+const pizzasSlice = createSlice({
+    name: 'pizzasSlice',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
@@ -17,7 +17,7 @@ const mainPageSlice = createSlice({
                 state.isLoading = true;
             })
             .addCase(fetchPizzasList.fulfilled, (state, action) => {
-                state.pizzas = action.payload;
+                state.data = action.payload;
                 state.isLoading = false;
             })
             .addCase(fetchPizzasList.rejected, (state, action) => {
@@ -26,5 +26,4 @@ const mainPageSlice = createSlice({
     },
 });
 
-export const { reducer: mainPageReducer, actions: mainPageActions } =
-    mainPageSlice;
+export const { reducer: pizzasReducer, actions: pizzasActions } = pizzasSlice;

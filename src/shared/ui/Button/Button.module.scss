@@ -1,5 +1,5 @@
 $primary-color: #1976d2;
-$secondary-color: #d15700;
+$secondary-color: #ff6900;
 $success-color: #4caf50;
 $error-color: #f44336;
 
@@ -10,6 +10,13 @@ $error-color: #f44336;
     transition: background-color 0.3s ease;
     border: solid;
     font-weight: 500;
+
+    &.clear {
+        padding: 0;
+        background-color: transparent;
+        border: none;
+        line-height: 0;
+    }
 
     &.outlined {
         border: 1px solid;

@@ -1,3 +1,5 @@
+export type doughType = 'Традиционное' | 'Тонкое';
+
 export interface PizzaSize {
     title: string;
     size: number;
@@ -10,10 +12,15 @@ export interface Pizza {
     name: string;
     imageUrl: string;
     ingredients: string[];
-    doughType: string;
+    doughType: doughType;
     options: {
         small: PizzaSize;
         medium: PizzaSize;
         large: PizzaSize;
     };
+}
+
+export interface PizzasSchema {
+    isLoading?: boolean;
+    data: Pizza[];
 }

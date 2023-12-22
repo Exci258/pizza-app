@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { ButtonHTMLAttributes, ReactNode } from 'react';
+import { ButtonHTMLAttributes, memo, ReactNode } from 'react';
 import cls from './Button.module.scss';
 
 export enum ButtonColor {
@@ -11,6 +11,7 @@ export enum ButtonColor {
 export enum ButtonVariant {
     CONTAINED = 'contained',
     OUTLINED = 'outlined',
+    CLEAR = 'clear',
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -22,7 +23,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 export type Mods = Record<string, boolean | string | undefined>;
 
-export const Button = (props: ButtonProps) => {
+export const Button = memo((props: ButtonProps) => {
     const {
         className,
         children,
@@ -48,4 +49,4 @@ export const Button = (props: ButtonProps) => {
             {children}
         </button>
     );
-};
+});

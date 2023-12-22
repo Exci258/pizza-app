@@ -1,5 +1,7 @@
-import { MainPageSchema } from 'pages/MainPage/model/types/mainPageSchema';
+import { CartSchema } from 'entities/Cart';
+import { PizzasSchema } from 'entities/Pizza';
 
 export interface StateSchema {
-    mainPage: MainPageSchema;
+    pizzas: PizzasSchema;
+    cart: CartSchema;
 }

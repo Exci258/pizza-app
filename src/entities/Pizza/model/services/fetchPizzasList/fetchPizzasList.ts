@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from 'shared/api/api';
-import { Pizza } from 'entities/Pizza/model/types/pizza';
+import { Pizza } from '../../types/pizzas';
 
 export const fetchPizzasList = createAsyncThunk<Pizza[]>(
-    'mainPage/fetchPizzasList',
+    'pizzas/fetchPizzasList',
     async (props, thunkApi) => {
         const { rejectWithValue } = thunkApi;
         try {
