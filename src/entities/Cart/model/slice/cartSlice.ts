@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CartSchema, PizzaCart } from '../types/cart';
+import { CartSchema, PizzaCart, sizeType } from '../types/cart';
+import { doughType } from '../../../Pizza/model/types/pizzas';
 
 const initialState: CartSchema = {
     items: [],
@@ -12,9 +13,12 @@ export const cartSlice = createSlice({
     initialState,
     reducers: {
         addItem(state, action: PayloadAction<PizzaCart>) {
-            const { id } = action.payload;
+            const { id, size, doughType } = action.payload;
             const existingPizzaIndex = state.items.findIndex(
-                (pizza) => pizza.id === id,
+                (pizza) =>
+                    pizza.id === id &&
+                    pizza.size === size &&
+                    pizza.doughType === doughType,
             );
             if (existingPizzaIndex !== -1) {
                 state.items[existingPizzaIndex].quantity += 1;
@@ -28,31 +32,51 @@ export const cartSlice = createSlice({
             );
             state.totalPrice = state.items.reduce(
                 (total, pizza) =>
-                    total + pizza.quantity * pizza.options.small.price,
+                    total + pizza.quantity * pizza.options[pizza.size].price,
                 0,
             );
         },
-        removeItem(state, action: PayloadAction<string>) {
-            const pizzaIdToRemove = action.payload;
-            const updatedItems = state.items.filter(
-                (pizza) => pizza.id !== pizzaIdToRemove,
+        removeItem(
+            state,
+            action: PayloadAction<{
+                id: string;
+                size: sizeType;
+                doughType: doughType;
+            }>,
+        ) {
+            const { id, size, doughType } = action.payload;
+            state.items = state.items.filter(
+                (pizza) =>
+                    !(
+                        pizza.id === id &&
+                        pizza.size === size &&
+                        pizza.doughType === doughType
+                    ),
             );
-
-            state.items = updatedItems;
             state.totalItems = state.items.reduce(
                 (total, pizza) => total + pizza.quantity,
                 0,
             );
             state.totalPrice = state.items.reduce(
                 (total, pizza) =>
-                    total + pizza.quantity * pizza.options.small.price,
+                    total + pizza.quantity * pizza.options[pizza.size].price,
                 0,
             );
         },
-        increaseQuantity(state, action: PayloadAction<string>) {
-            const pizzaIdToIncrease = action.payload;
+        increaseQuantity(
+            state,
+            action: PayloadAction<{
+                id: string;
+                size: sizeType;
+                doughType: doughType;
+            }>,
+        ) {
+            const { id, size, doughType } = action.payload;
             const existingPizzaIndex = state.items.findIndex(
-                (pizza) => pizza.id === pizzaIdToIncrease,
+                (pizza) =>
+                    pizza.id === id &&
+                    pizza.size === size &&
+                    pizza.doughType === doughType,
             );
 
             if (existingPizzaIndex !== -1) {
@@ -63,15 +87,26 @@ export const cartSlice = createSlice({
                 );
                 state.totalPrice = state.items.reduce(
                     (total, pizza) =>
-                        total + pizza.quantity * pizza.options.small.price,
+                        total +
+                        pizza.quantity * pizza.options[pizza.size].price,
                     0,
                 );
             }
         },
-        decreaseQuantity(state, action: PayloadAction<string>) {
-            const pizzaIdToDecrease = action.payload;
+        decreaseQuantity(
+            state,
+            action: PayloadAction<{
+                id: string;
+                size: sizeType;
+                doughType: doughType;
+            }>,
+        ) {
+            const { id, size, doughType } = action.payload;
             const existingPizzaIndex = state.items.findIndex(
-                (pizza) => pizza.id === pizzaIdToDecrease,
+                (pizza) =>
+                    pizza.id === id &&
+                    pizza.size === size &&
+                    pizza.doughType === doughType,
             );
 
             if (existingPizzaIndex !== -1) {
@@ -87,7 +122,8 @@ export const cartSlice = createSlice({
                 );
                 state.totalPrice = state.items.reduce(
                     (total, pizza) =>
-                        total + pizza.quantity * pizza.options.small.price,
+                        total +
+                        pizza.quantity * pizza.options[pizza.size].price,
                     0,
                 );
             }

@@ -1,12 +1,12 @@
 import classNames from 'classnames';
 import { Button, ButtonColor, ButtonVariant } from 'shared/ui/Button';
 import { useAppDispatch } from 'shared/lib/hooks/useAppaDispatch/useAppDispatch';
-import { memo, useState } from 'react';
+import { ChangeEvent, memo, useState } from 'react';
 import { Modal } from 'shared/ui/Modal';
 import CloseIcon from 'shared/assets/icons/close.svg';
+import { cartActions, sizeType } from 'entities/Cart';
 import cls from './PizzaCard.module.scss';
-import { Pizza } from '../../model/types/pizzas';
-import { cartActions } from '../../../Cart';
+import { doughType, Pizza, PizzaSize } from '../../model/types/pizzas';
 
 export interface PizzaCardProps {
     className?: string;
@@ -17,6 +17,23 @@ export const PizzaCard = memo((props: PizzaCardProps) => {
     const { className, pizza } = props;
     const dispatch = useAppDispatch();
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedSize, setSelectedSize] = useState<sizeType>('small');
+    const [selectedDough, setSelectedDough] =
+        useState<doughType>('Традиционное');
+    const [selectedOption, setSelectedOption] = useState<PizzaSize>(
+        pizza.options.small,
+    );
+
+    const handleSizeChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const newSize: sizeType = e.target.value as sizeType;
+        setSelectedSize(newSize);
+        setSelectedOption(pizza.options[newSize]);
+    };
+
+    const handleDoughChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const newDough: doughType = e.target.value as doughType;
+        setSelectedDough(newDough);
+    };
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -27,7 +44,18 @@ export const PizzaCard = memo((props: PizzaCardProps) => {
     };
 
     const addItemToCart = () => {
-        dispatch(cartActions.addItem({ ...pizza, quantity: 0 }));
+        const selectedSizeOption = {
+            [selectedSize]: selectedOption,
+        } as { [key in 'small' | 'medium' | 'large']: PizzaSize };
+        dispatch(
+            cartActions.addItem({
+                ...pizza,
+                doughType: selectedDough,
+                size: selectedSize,
+                options: selectedSizeOption,
+                quantity: 0,
+            }),
+        );
         closeModal();
     };
 
@@ -70,15 +98,94 @@ export const PizzaCard = memo((props: PizzaCardProps) => {
                     <img src={pizza.imageUrl} alt={pizza.name} />
                     <div className={cls.PizzaCardParams}>
                         <h2 className={cls.Title}>{pizza.name}</h2>
-                        <div className={cls.Ingredients}>
+                        <span className={cls.PizzaOptions}>
+                            {`${pizza.options[selectedSize].size} см,
+                            ${selectedDough} тесто, 
+                            ${pizza.options[selectedSize].weight} г`}
+                        </span>
+                        <span className={cls.Ingredients}>
                             {pizza.ingredients.join(', ')}
+                        </span>
+                        <div className={cls.SizeOptions}>
+                            <label
+                                className={classNames({
+                                    [cls.InputChecked]:
+                                        selectedSize === 'small',
+                                })}
+                            >
+                                <input
+                                    type="radio"
+                                    value="small"
+                                    checked={selectedSize === 'small'}
+                                    onChange={handleSizeChange}
+                                />
+                                {pizza.options.small.title}
+                            </label>
+                            <label
+                                className={classNames({
+                                    [cls.InputChecked]:
+                                        selectedSize === 'medium',
+                                })}
+                            >
+                                <input
+                                    type="radio"
+                                    value="medium"
+                                    checked={selectedSize === 'medium'}
+                                    onChange={handleSizeChange}
+                                />
+                                {pizza.options.medium.title}
+                            </label>
+                            <label
+                                className={classNames({
+                                    [cls.InputChecked]:
+                                        selectedSize === 'large',
+                                })}
+                            >
+                                <input
+                                    type="radio"
+                                    value="large"
+                                    checked={selectedSize === 'large'}
+                                    onChange={handleSizeChange}
+                                />
+                                {pizza.options.large.title}
+                            </label>
+                        </div>
+                        <div className={cls.doughOptions}>
+                            <label
+                                className={classNames({
+                                    [cls.InputChecked]:
+                                        selectedDough === 'Традиционное',
+                                })}
+                            >
+                                <input
+                                    type="radio"
+                                    value="Традиционное"
+                                    checked={selectedDough === 'Традиционное'}
+                                    onChange={handleDoughChange}
+                                />
+                                Традиционное
+                            </label>
+                            <label
+                                className={classNames({
+                                    [cls.InputChecked]:
+                                        selectedDough === 'Тонкое',
+                                })}
+                            >
+                                <input
+                                    type="radio"
+                                    value="Тонкое"
+                                    checked={selectedDough === 'Тонкое'}
+                                    onChange={handleDoughChange}
+                                />
+                                Тонкое
+                            </label>
                         </div>
                         <Button
-                            variant={ButtonVariant.OUTLINED}
                             color={ButtonColor.SECONDARY}
                             onClick={addItemToCart}
                         >
-                            Добавить в корзину за {pizza.options.small.price} ₽
+                            {`Добавить в корзину за 
+                            ${pizza.options[selectedSize].price} ₽`}
                         </Button>
                     </div>
                 </div>

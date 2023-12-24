@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { fetchPizzasList } from 'entities/Pizza/model/services/fetchPizzasList/fetchPizzasList';
+import { fetchPizzasList } from 'entities/Pizza';
 import { useAppDispatch } from 'shared/lib/hooks/useAppaDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { CartDrawer, getCart } from 'entities/Cart';

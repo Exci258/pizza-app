@@ -61,40 +61,37 @@ $error-color: #f44336;
 
     &.contained {
         color: #fff;
+        border: none;
 
         &.primary {
             background-color: $primary-color;
-            border-color: $primary-color;
 
             &:hover:not(:disabled) {
-                background-color: darken($primary-color, 10%);
+                background-color: darken($primary-color, 5%);
             }
         }
 
         &.secondary {
             background-color: $secondary-color;
-            border-color: $secondary-color;
 
             &:hover:not(:disabled) {
-                background-color: darken($secondary-color, 10%);
+                background-color: darken($secondary-color, 5%);
             }
         }
 
         &.success {
             background-color: $success-color;
-            border-color: $success-color;
 
             &:hover:not(:disabled) {
-                background-color: darken($success-color, 10%);
+                background-color: darken($success-color, 5%);
             }
         }
 
         &.error {
             background-color: $error-color;
-            border-color: $error-color;
 
             &:hover:not(:disabled) {
-                background-color: darken($error-color, 10%);
+                background-color: darken($error-color, 5%);
             }
         }
     }

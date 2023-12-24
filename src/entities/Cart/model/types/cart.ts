@@ -1,6 +1,9 @@
-import { Pizza } from '../../../Pizza';
+import { Pizza } from 'entities/Pizza';
+
+export type sizeType = 'small' | 'medium' | 'large';
 
 export interface PizzaCart extends Pizza {
+    size: sizeType;
     quantity: number;
 }
 

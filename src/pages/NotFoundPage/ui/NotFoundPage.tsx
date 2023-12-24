@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
+import { RoutePath } from 'app/providers/AppRouter';
+import { Button, ButtonColor, ButtonVariant } from 'shared/ui/Button';
 import cls from './NotFoundPage.module.scss';
-import { Button, ButtonColor, ButtonVariant } from '../../../shared/ui/Button';
-import { RoutePath } from '../../../app/providers/AppRouter/config/routeConfig';
 
 export interface NotFoundPageProps {
     className?: string;

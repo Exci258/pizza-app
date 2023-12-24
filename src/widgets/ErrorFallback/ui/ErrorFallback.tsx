@@ -1,6 +1,6 @@
 import classNames from 'classnames';
+import { Button, ButtonColor, ButtonVariant } from 'shared/ui/Button';
 import cls from './ErrorFallback.module.scss';
-import { Button, ButtonColor, ButtonVariant } from '../../../shared/ui/Button';
 
 interface ErrorFallbackProps {
     className?: string;

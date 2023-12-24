@@ -1,8 +1,8 @@
 import classNames from 'classnames';
-import { Button, ButtonColor, ButtonVariant } from 'shared/ui/Button';
+import { Button, ButtonColor } from 'shared/ui/Button';
 import { CartSchema } from 'entities/Cart';
 import { Link } from 'react-router-dom';
-import { RoutePath } from 'app/providers/AppRouter/config/routeConfig';
+import { RoutePath } from 'app/providers/AppRouter';
 import LogoIcon from 'shared/assets/icons/logo.svg';
 import { memo } from 'react';
 import cls from './Navbar.module.scss';
@@ -23,11 +23,10 @@ export const Navbar = memo((props: NavbarProps) => {
             </Link>
             <Button
                 onClick={onOpenDrawer}
-                variant={ButtonVariant.OUTLINED}
                 color={ButtonColor.SECONDARY}
                 className={cls.Cart}
             >
-                {`Корзина (${cart.totalItems})`}
+                {`Корзина ${cart.totalItems > 0 ? `(${cart.totalItems})` : ''}`}
             </Button>
         </header>
     );
