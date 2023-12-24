@@ -10,7 +10,6 @@ export function createReduxStore() {
 
     return configureStore({
         reducer: rootReducers,
-        devTools: true,
     });
 }
 

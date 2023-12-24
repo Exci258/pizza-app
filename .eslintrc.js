@@ -37,4 +37,7 @@ module.exports = {
         'no-restricted-globals': ['warn'],
         'no-param-reassign': 'off',
     },
+    globals: {
+        __API__: true,
+    },
 };

@@ -6,7 +6,7 @@ declare module '*.scss' {
     const classNames: IClassNames;
     export = classNames;
 }
-
+declare const __API__: string;
 declare module '*.png';
 declare module '*.jpg';
 declare module '*.jpeg';
