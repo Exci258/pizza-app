@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { fetchPizzasList } from 'entities/Pizza';
 import { useAppDispatch } from 'shared/lib/hooks/useAppaDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
-import { CartDrawer, getCart } from 'entities/Cart';
+import { cartActions, CartDrawer, getCart } from 'entities/Cart';
 import { Navbar } from 'widgets/Navbar';
 import { AppRouter } from './providers/AppRouter';
 
@@ -13,6 +13,7 @@ function App() {
 
     useEffect(() => {
         dispatch(fetchPizzasList());
+        dispatch(cartActions.initCart());
     }, [dispatch]);
 
     const onOpenDrawer = useCallback(() => {
