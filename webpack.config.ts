@@ -13,7 +13,8 @@ export default (env: BuildEnv): webpack.Configuration => {
 
     const PORT = env.port || 3000;
     const mode = env.mode || 'development';
-    const apiUrl = env.apiUrl || '';
+    const apiUrl =
+        env.apiUrl || 'https://6581181f3dfdd1b11c4268bd.mockapi.io/api/v1';
     const isDev = mode === 'development';
 
     return buildWebpackConfig({
