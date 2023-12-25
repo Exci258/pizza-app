@@ -6,12 +6,14 @@ import { BuildOptions } from './types/config';
 
 export function buildPlugins({
     paths,
+    isDev,
     apiUrl,
 }: BuildOptions): webpack.WebpackPluginInstance[] {
-    return [
+    const plugins = [
         new webpack.ProgressPlugin(),
         new HtmlWebpackPlugin({
             template: paths.html,
+            favicon: paths.favicon,
         }),
         new MiniCssExtractPlugin({
             filename: 'css/[name].[contenthash:8].css',
@@ -20,7 +22,12 @@ export function buildPlugins({
         new webpack.DefinePlugin({
             __API__: JSON.stringify(apiUrl),
         }),
-        new webpack.HotModuleReplacementPlugin(),
-        new ReactRefreshWebpackPlugin(),
     ];
+
+    if (isDev) {
+        plugins.push(new ReactRefreshWebpackPlugin());
+        plugins.push(new webpack.HotModuleReplacementPlugin());
+    }
+
+    return plugins;
 }

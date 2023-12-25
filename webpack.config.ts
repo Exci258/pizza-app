@@ -9,6 +9,7 @@ export default (env: BuildEnv): webpack.Configuration => {
         output: path.resolve(__dirname, 'dist'),
         src: path.resolve(__dirname, 'src'),
         html: path.resolve(__dirname, 'public', 'index.html'),
+        favicon: path.resolve(__dirname, 'public', 'favicon.ico'),
     };
 
     const PORT = env.port || 3000;
