@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 292px;
 }
 
 .Main {
@@ -16,7 +15,9 @@
 
     .Img {
         position: relative;
-        width: 100%;
+        max-width: 292px;
+        top: 0;
+        transition: top 150ms ease-out 0s;
         object-fit: contain;
 
         &:hover {
@@ -51,13 +52,31 @@
     max-width: 800px;
     position: relative;
 
+    @media (max-width: 1060px) {
+        max-width: 680px;
+    }
+
+    @media (max-width: 730px) {
+        max-width: 350px;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .CloseBtn {
         position: absolute;
         top: 0;
         right: -40px;
 
+        @media (max-width: 730px) {
+            right: 0;
+        }
+
         svg {
             stroke: #fff;
+
+            @media (max-width: 730px) {
+                stroke: #000;
+            }
 
             &:hover {
                 transform: scale(1.1);
@@ -67,6 +86,16 @@
 
     img {
         width: 400px;
+
+        @media (max-width: 1060px) {
+            width: 300px;
+            height: 300px;
+        }
+
+        @media (max-width: 730px) {
+            width: 250px;
+            height: 250px;
+        }
     }
 }
 
@@ -94,7 +123,7 @@
     .SizeOptions,
     .doughOptions {
         border-radius: 9999px;
-        background-color: rgb(243, 243, 247);
+        background-color: rgb(243 243 247);
         font-size: var(--font-size-s);
         display: flex;
         margin: 8px 0;
@@ -110,10 +139,9 @@
         }
 
         .InputChecked {
-            background-color: rgb(255, 255, 255);
+            background-color: rgb(255 255 255);
             box-shadow: rgba(6, 5, 50, 0.19) 0 6px 20px;
             border-radius: 9999px;
-            padding: 2px;
             font-weight: 500;
         }
 

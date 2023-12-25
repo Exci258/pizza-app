@@ -18,6 +18,10 @@
     background-color: rgb(243 243 247);
     overflow-y: auto;
     transition: all 150ms;
+
+    @media (max-width: 730px) {
+        width: 100vw;
+    }
 }
 
 .Btn {
@@ -25,9 +29,18 @@
     top: 50%;
     right: 435px;
 
+    @media (max-width: 730px) {
+        top: 0;
+        right: 0;
+    }
+
     svg {
         stroke: white;
         transition: transform 0.5s ease;
+
+        @media (max-width: 730px) {
+            stroke: black;
+        }
 
         &:hover {
             transform: rotate(180deg);
