@@ -48,10 +48,10 @@
         line-height: 0;
         padding: 7px;
         border-radius: 4px;
-        background-color: rgba(196 196 196 20%);
+        background-color: rgba(196, 196, 196, 20%);
 
         &:hover {
-            background-color: rgba(196 196 196 50%);
+            background-color: rgba(196, 196, 196, 50%);
         }
     }
 }
@@ -60,5 +60,5 @@
     flex-grow: 1;
     margin-top: 16px;
     padding-top: 16px;
-    border-top: 1px solid rgba(255 255 255 10%);
+    border-top: 1px solid rgba(255, 255, 255, 10%);
 }

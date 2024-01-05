@@ -129,7 +129,7 @@
     .SizeOptions,
     .doughOptions {
         border-radius: 9999px;
-        background-color: rgb(243 243 247);
+        background-color: rgb(243, 243, 247);
         font-size: var(--font-size-s);
         display: flex;
         margin: 8px 0;
@@ -145,8 +145,8 @@
         }
 
         .InputChecked {
-            background-color: rgb(255 255 255);
-            box-shadow: rgba(6 5 50 19%) 0 6px 20px;
+            background-color: rgb(255, 255, 255);
+            box-shadow: rgba(6, 5, 50, 19%) 0 6px 20px;
             border-radius: 9999px;
             font-weight: 500;
         }
