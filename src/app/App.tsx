@@ -4,7 +4,9 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppaDispatch/useAppDispatch'
 import { useSelector } from 'react-redux';
 import { cartActions, CartDrawer, getCart } from 'entities/Cart';
 import { Navbar } from 'widgets/Navbar';
+import { Footer } from 'widgets/Footer';
 import { AppRouter } from './providers/AppRouter';
+import { Container } from '../shared/ui/Container';
 
 function App() {
     const dispatch = useAppDispatch();
@@ -26,13 +28,16 @@ function App() {
 
     return (
         <div className="app">
-            <Navbar onOpenDrawer={onOpenDrawer} cart={cart} />
-            <AppRouter />
-            <CartDrawer
-                isOpen={isDrawerOpen}
-                onClose={onCloseDrawer}
-                cart={cart}
-            />
+            <Container>
+                <Navbar onOpenDrawer={onOpenDrawer} cart={cart} />
+                <AppRouter />
+                <CartDrawer
+                    isOpen={isDrawerOpen}
+                    onClose={onCloseDrawer}
+                    cart={cart}
+                />
+            </Container>
+            <Footer />
         </div>
     );
 }

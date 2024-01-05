@@ -28,6 +28,12 @@
     .Ingredients {
         font-size: 14px;
     }
+
+    @media (max-width: 1060px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 .Footer {
@@ -140,7 +146,7 @@
 
         .InputChecked {
             background-color: rgb(255 255 255);
-            box-shadow: rgba(6, 5, 50, 0.19) 0 6px 20px;
+            box-shadow: rgba(6 5 50 19%) 0 6px 20px;
             border-radius: 9999px;
             font-weight: 500;
         }
